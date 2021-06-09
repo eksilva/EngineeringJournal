@@ -15,8 +15,13 @@
     - Within the results list, hovering over terms or fields in each result gives you the option of including, excluding, or starting a new search based on the hovered term.
     - Commands can also be input within each search, such as displaying a sorted list of successfully purchased products descending by counts of each product purchased 
       - e.g. ```sourcetype=access_combined action=purchase status=200 | stats count by product_name | sort -count``` The "|" operator indicates a new command to be invoked upon the results of the previous command.
-  - **Create Reports**: reports can give statistical and visual feedback about your logs in a one-time or scheduled fashion.
+  - **Generate Reports**: reports can give statistical and visual feedback about your logs in a one-time or scheduled fashion.
     - After receiving the resulting data from your search, clicking ```Save As``` -> ```Report``` will bring up the modal to title your report/add a description, add time range capabilities, change permissions, and other aspects. These other options can be changed after viewing the report as well.
+    - All reports you have permission to view will be in the reports section.
+    - A quick report can be generated from just a search by selecting an action/field and selecting one of the quick report options in the modal that pops up upon selection.
+  - **Trigger Alerts**: Alerts can be triggered based upon user-defined criteria on a scheduled or real-time basis.
+    - Users can also define what they want Splunk to do when the Alert is triggered and what severity the alert should have, and what to send along with the alert if an action is defined. 
+    - All alerts and their criteria can be changed under ```Activity``` -> ```Triggered Alerts``` or under the ```Alerts``` Splunk menu bar tab.
 
 ## **How to Docker**
 
