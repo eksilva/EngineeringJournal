@@ -13,8 +13,11 @@
     - When searching for phrases, quotes must be applied around the entire phrase, or else Splunk will think you are searching for multiple inclusive terms 
       - e.g. ```product_name="Dream Crusher"``` as opposed to ```product_name=Dream Crusher```.
     - Within the results list, hovering over terms or fields in each result gives you the option of including, excluding, or starting a new search based on the hovered term.
-    - Commands can also be input within each search, such as displaying a sorted list of successfully purchased products descending by counts of each product purchased 
+    - Transforming Commands can also be input within each search, such as displaying a sorted list of successfully purchased products descending by counts of each product purchased 
       - e.g. ```sourcetype=access_combined action=purchase status=200 | stats count by product_name | sort -count``` The "|" operator indicates a new command to be invoked upon the results of the previous command.
+      - The Primary Commands are ```chart, timechart, top, rare, stats```
+    - **Lookups**: Not exactly sure what the definition is, but seems to be a more specific way to search; implemented as a command following the ```|``` (pipe) operator within the search bar, and generally follows the structure ```lookup <lookup-table-name> <lookup-field1> OUTPUT <lookup-field2>```
+    - **Lookup Tables** can convert hard to read search results into more user-readable translations based on an imported converter file, usually .csv.
   - **Generate Reports**: reports can give statistical and visual feedback about your logs in a one-time or scheduled fashion.
     - After receiving the resulting data from your search, clicking ```Save As``` -> ```Report``` will bring up the modal to title your report/add a description, add time range capabilities, change permissions, and other aspects. These other options can be changed after viewing the report as well.
     - All reports you have permission to view will be in the reports section.
