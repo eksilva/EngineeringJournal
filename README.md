@@ -37,10 +37,22 @@
 ## **How to MongoDB/Mongoose**
 
 ## **How to SQL**
-**SQL**
+### **SQL**
 : stands for Structured Query Language, which is a performant database querying language used to create, read, update, and delete (CRUD) entries in a database. Common database options that use SQL are MySQL, SQLite, and PostGreSQL.
 
-- What can you do with it?
+### What can you do with it?
+  - **CREATE**: used to create tables (which store records or actual data entries) within a database, setting columns, primary key, foreign keys, and more.
+    - **ALTER**: tables can be altered after creation using this command, including the new column name and data type, and optionally default value.
+  ```SQL
+  CREATE TABLE table1 (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    age INTEGER
+  );
+
+  ALTER TABLE table1 ADD zip INTEGER;
+  ```
+
   - **SELECT**: one of the most used commands in SQL is the SELECT command/keyword which allows users to search and read data within a database table based on supplementary information within the command, as well as reading the entire table/tables.
   ```SQL
   SELECT * FROM table1;
@@ -49,13 +61,44 @@
   ```SQL
   INSERT INTO table1 (id, name, age, zip) VALUES (1, 'Kimo', 105, 90210);
   ```
-  -**UPDATE**: used for changing an existing entry's values without deleting the entry or creating a whole new one.
+  - **UPDATE**: used for changing an existing entry's values without deleting the entry or creating a whole new one.
   ```SQL
   UPDATE table1 SET age = 26, zip = 92122, WHERE id = 1;
   ```
-  -**DELETE**: useed for deleting an entry/entries within a table. Must be used with caution, as it will delete everything within the given specifications (i.e. ensure specificity).
+  - **DELETE**: useed for deleting an entry/entries within a table. Must be used with caution, as it will delete everything within the given specifications (i.e. ensure specificity).
   ```SQL
   DELETE FROM table1 WHERE id = 1;
+  ```
+
+### Useful Concepts
+  - **TRANSACTIONS**: used for significantly improving the reliability and time performance of implementing large quantities of queries/commands as a single group, like inserting 10,000 entries into a table. Reliable, in the way that if ONE entry attempt fails, the entire group fails.
+    - **ROLLBACK**: a safety catch in case a large number of queries succeeded but unintentionally. Will revert table to its previous state before transaction began.
+  ```SQL
+  BEGIN TRANSACTION;
+    INSERT INTO table1 (id, name, age, zip) VALUES(...);
+    .
+    .
+    .
+    ROLLBACK;
+  END TRANSACTION;
+  ```
+
+  - **TRIGGERS**: used to invoke reactionary commands/queries upon desired trigger actions. Triggers give you access to the ```NEW``` keyword which refers to the newly created row of data within the target table, in the example below, the new row in the "widgetSale" table.
+  ```SQL
+  CREATE TRIGGER newWidgetSale AFTER INSERT ON widgetSale
+    BEGIN
+      UPDATE widgetCustomer set last_order_id = NEW.id WHERE widgetCustomer.id = NEW.customer_id;
+    END
+  ;
+  ```
+  - Triggers can also be used to prevent changes if desired circumstances have already been met/not met yet. The ```RAISE``` keyword will throw and error in the console with a message provided in the trigger definition. 
+  ```SQL
+  CREATE TRIGGER reconciledTrigger BEFORE UPDATE ON widgetSale;
+    BEGIN
+      SELECT RAISE(ROLLBACK, 'cannot update table "widgetSale"') FROM widgetSale
+        WHERE id = NEW.id AND reconciled = 1;
+    END
+  ;
   ```
 
 ## **How to Redux/React-Redux**
