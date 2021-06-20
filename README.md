@@ -36,7 +36,27 @@
 
 ## **How to MongoDB/Mongoose**
 
-## **How to MySQL/PostGreSQL**
+## **How to SQL**
+**SQL**
+: stands for Structured Query Language, which is a performant database querying language used to create, read, update, and delete (CRUD) entries in a database. Common database options that use SQL are MySQL, SQLite, and PostGreSQL.
+
+- What can you do with it?
+  - **SELECT**: one of the most used commands in SQL is the SELECT command/keyword which allows users to search and read data within a database table based on supplementary information within the command, as well as reading the entire table/tables.
+  ```SQL
+  SELECT * FROM table1;
+  ```
+  - **INSERT INTO**: used for adding an entry (row of data) into a table, and will include data based on columns included in the command.
+  ```SQL
+  INSERT INTO table1 (id, name, age, zip) VALUES (1, 'Kimo', 105, 90210);
+  ```
+  -**UPDATE**: used for changing an existing entry's values without deleting the entry or creating a whole new one.
+  ```SQL
+  UPDATE table1 SET age = 26, zip = 92122, WHERE id = 1;
+  ```
+  -**DELETE**: useed for deleting an entry/entries within a table. Must be used with caution, as it will delete everything within the given specifications (i.e. ensure specificity).
+  ```SQL
+  DELETE FROM table1 WHERE id = 1;
+  ```
 
 ## **How to Redux/React-Redux**
 
