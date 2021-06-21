@@ -55,7 +55,7 @@
 
   - **SELECT**: one of the most used commands in SQL is the SELECT command/keyword which allows users to search and read data within a database table based on supplementary information within the command, as well as reading the entire table/tables.
   ```SQL
-  SELECT * FROM table1;
+  SELECT id, name FROM table1 WHERE age >= 25;
   ```
   - **INSERT INTO**: used for adding an entry (row of data) into a table, and will include data based on columns included in the command.
   ```SQL
@@ -79,6 +79,7 @@
     .
     .
     .
+    INSERT INTO...;
     ROLLBACK;
   END TRANSACTION;
   ```
@@ -98,6 +99,25 @@
       SELECT RAISE(ROLLBACK, 'cannot update table "widgetSale"') FROM widgetSale
         WHERE id = NEW.id AND reconciled = 1;
     END
+  ;
+  ```
+  - Another use for Triggers is creating a timestamp for each query made on an entry. 
+  ```SQL
+  Just Google it.
+  ```
+  - **SUBSELECTS**: using the results of a ```SELECT``` within another ```SELECT```. For example, select the first three letters of a set of entries and use those to select the full country name within another table.
+  ```SQL
+  SELECT co.Name, ss.CCode FROM (
+    SELECT SUBSTR(a, 1, 2) AS State, SUBSTR(a, 3) AS SCode, SUBSTR(b, 1, 2) AS Country, SUBSTR(b,  3) as CCode FROM t
+    ) AS ss
+    JOIN Country AS co ON co.Code2 = ss.Country
+  ;
+  ```
+  - **VIEWS**: essentially stored SELECTS which produce tables to easily view data. Can be stored and used later as a subselect.
+  ```SQL
+  CREATE VIEW company_view AS
+    SELECT id, name, age
+    FROM  company
   ;
   ```
 
